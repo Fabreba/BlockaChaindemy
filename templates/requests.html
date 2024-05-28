@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitações Pendentes</title>
+</head>
+<body>
+    <h1>Solicitações Pendentes</h1>
+    <a href="{{ url_for('index') }}">Voltar</a>
+    <div id="requests">
+        {% for request in requests %}
+            <div>
+                <p><strong>Usuário:</strong> {{ request['user_address'] }}</p>
+                <p><strong>Nome do Estudante:</strong> {{ request['student_name'] }}</p>
+                <p><strong>Curso:</strong> {{ request['course'] }}</p>
+                <p><strong>Nota:</strong> {{ request['grade'] }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

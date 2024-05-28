@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Records</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Academic Records</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <p><strong>Endereço do Proprietário:</strong> {{ owner_address }}</p>
+                <form method="POST" action="{{ url_for('add_record') }}">
+                    <div class="form-group">
+                        <label for="user_address">Endereço do Usuário:</label>
+                        <input type="text" class="form-control" id="user_address" name="user_address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student_name">Nome do Estudante:</label>
+                        <input type="text" class="form-control" id="student_name" name="student_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Curso:</label>
+                        <input type="text" class="form-control" id="course" name="course" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade">Nota:</label>
+                        <input type="text" class="form-control" id="grade" name="grade" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar Registro</button>
+                </form>
+
+                {% if message %}
+                    <div class="alert alert-info mt-3">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <h2>Registros</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                {% if records %}
+                    <ul class="list-group">
+                        {% for record in records %}
+                            <li class="list-group-item">
+                                <p><strong>Nome do Estudante:</strong> {{ record.student_name }}</p>
+                                <p><strong>Curso:</strong> {{ record.course }}</p>
+                                <p><strong>Nota:</strong> {{ record.grade }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Nenhum registro encontrado.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <h2>Solicitações Pendentes</h2>
+        <a href="{{ url_for('get_requests') }}" class="btn btn-secondary">Ver Solicitações</a>
+    </div>
+</body>
+</html>

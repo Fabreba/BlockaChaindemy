@@ -163,5 +163,3 @@ module.exports = {
   }
 };
 ```
-
-Este README.md fornece uma visão geral completa de como configurar, migrar e executar o DApp, além de incluir exemplos de código e estrutura de arquivos.

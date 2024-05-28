@@ -1,86 +1,167 @@
-# BlockaChaindemy
-# Academic Records Management System on Blockchain
+Claro! Aqui está um exemplo de documentação README.md para a migração usando Truffle Suite e Ganache para o arquivo `AcademicRecords.sol`:
 
-Welcome to the Academic Records Management System on Blockchain, a project built using Python, Solidity, and Brownie. This system allows for secure and transparent storage of academic records and diplomas using blockchain technology, with RBAC (Role-Based Access Control) implemented to ensure only authorized personnel can manage and validate records.
+# Academic Records DApp
 
-## Overview
+Este projeto é uma aplicação descentralizada (DApp) para gerenciar registros acadêmicos utilizando Solidity, Truffle Suite, Ganache e Flask.
 
-The main objective of this project is to provide a decentralized and tamper-proof solution for academic records management, improving the integrity and accessibility of these records. It utilizes smart contracts to store and manage the data and includes an RBAC system to differentiate between different user roles.
+## Requisitos
 
-## Features
+- Node.js e npm
+- Truffle
+- Ganache
+- Python
+- Flask
+- Web3.py
 
-- **Blockchain Storage**: Academic records are stored on the Ethereum blockchain, ensuring transparency and data integrity.
-- **RBAC**: Role-Based Access Control allows specific roles (e.g., student, registrar, verifier) to access and manage the data appropriately.
-- **Python & Solidity**: The core is developed using Python and Solidity, with Brownie as the framework to simplify the smart contract development process.
+## Instalação
 
-## Project Structure
+### Passo 1: Instalar Node.js e npm
 
-- `contracts/`: Contains the Solidity smart contracts that implement the academic records system and the RBAC logic.
-- `scripts/`: Python scripts for deploying, testing, and managing the smart contracts.
-- `tests/`: Test cases implemented to ensure the correctness and security of the system.
-- `brownie-config.yaml`: Configuration file for the Brownie framework.
+Se você ainda não tem Node.js e npm instalados, faça o download e instale a partir do [site oficial do Node.js](https://nodejs.org/).
 
-## Requirements
+### Passo 2: Instalar Truffle
 
-- [Python](https://www.python.org/)
-- [Node.js](https://nodejs.org/)
-- [Brownie](https://eth-brownie.readthedocs.io/)
-- An Ethereum development environment like [Ganache](https://trufflesuite.com/ganache/)
+Instale o Truffle globalmente no seu sistema:
 
-## Getting Started
+```sh
+npm install -g truffle
+```
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/academic-records-management-blockchain.git
-    cd academic-records-management-blockchain
-    ```
+### Passo 3: Instalar Ganache
 
-2. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+Você pode instalar o Ganache como uma aplicação desktop a partir do [site oficial do Ganache](https://www.trufflesuite.com/ganache) ou como um pacote npm:
 
-3. Start an Ethereum development network (e.g., Ganache).
 
-4. Compile the smart contracts:
-    ```bash
-    brownie compile
-    ```
+npm install -g ganache-cli
+```
 
-5. Deploy the contracts to the local blockchain:
-    ```bash
-    brownie run scripts/deploy.py
-    ```
+### Passo 4: Clonar o Repositório
 
-6. Execute tests to verify the functionality:
-    ```bash
-    brownie test
-    ```
+Clone este repositório em seu sistema local:
 
-## How It Works
+```sh
+git clone <URL_DO_SEU_REPOSITORIO>
+cd <NOME_DO_REPOSITORIO>
+```
 
-### Smart Contracts
+### Passo 5: Instalar Dependências do Projeto
 
-- **AcademicRecords.sol**: Manages the storage and retrieval of academic records and diplomas.
-- **RBAC.sol**: Implements Role-Based Access Control to differentiate between roles and authorize specific actions.
+Instale as dependências do projeto:
 
-### User Roles
+```sh
+npm install
+```
 
-- **Student**: Can view their own academic records and request verification.
-- **Registrar**: Manages the addition and verification of academic records.
-- **Verifier**: Verifies the authenticity of academic records.
+## Configuração
 
-## Contributing
+### Configurar Ganache
 
-Contributions are welcome! Please follow the steps below:
+Inicie o Ganache:
 
-1. Fork the repository.
-2. Create a new branch.
-3. Make your changes and commit them.
-4. Push your branch to your forked repository.
-5. Create a Pull Request.
+```sh
+ganache-cli
+```
 
-## License
+### Migrar Contrato
 
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
+Compile e migre o contrato para a rede local do Ganache:
 
+```sh
+truffle compile
+truffle migrate
+```
+
+## Estrutura do Projeto
+
+```sh
+.
+├── build
+│   └── contracts
+│       └── AcademicRecords.json
+├── contracts
+│   └── AcademicRecords.sol
+├── migrations
+│   └── 1_initial_migration.js
+├── app.py
+├── config.py
+├── contract.py
+├── routes.py
+├── templates
+│   ├── index.html
+│   └── requests.html
+├── truffle-config.js
+└── README.md
+```
+
+## Scripts de Migração
+
+### 1_initial_migration.js
+
+```javascript
+const AcademicRecords = artifacts.require("AcademicRecords");
+
+module.exports = function(deployer) {
+  deployer.deploy(AcademicRecords);
+};
+```
+
+## Rodando a Aplicação
+
+### Instalar Dependências do Python
+
+Instale as dependências do Python:
+
+```sh
+pip install flask web3
+```
+
+### Executar a Aplicação Flask
+
+Inicie a aplicação Flask:
+
+```sh
+python app.py
+```
+
+A aplicação estará disponível em `http://127.0.0.1:5000`.
+
+## Interagindo com o Contrato
+
+### Verificar Registros
+
+Acesse a página principal para visualizar todos os registros acadêmicos.
+
+### Adicionar Registro
+
+Na página principal, preencha os detalhes do aluno, curso e nota, e envie para adicionar um novo registro.
+
+### Verificar Solicitações
+
+Acesse a página de solicitações para ver as solicitações de adição de registros pendentes.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
+### truffle-config.js
+
+Aqui está um exemplo de configuração para o Truffle:
+
+```javascript
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*" // Match any network id
+    }
+  },
+  compilers: {
+    solc: {
+      version: "0.8.0" // Fetch exact version from solc-bin
+    }
+  }
+};
+```
+
+Este README.md fornece uma visão geral completa de como configurar, migrar e executar o DApp, além de incluir exemplos de código e estrutura de arquivos.
